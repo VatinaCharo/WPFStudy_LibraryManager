@@ -24,5 +24,13 @@ namespace WPFStudy_LibraryManager
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var usrName = usrNameTextBox.Text;
+            var usrPwd = usrPasswordTextBox.Text;
+            if (usrName != "wpf" || usrPwd != "123456") { MessageBox.Show("用户名或密码不正确"); return; }
+            MessageBox.Show("OK");
+        }
     }
 }
