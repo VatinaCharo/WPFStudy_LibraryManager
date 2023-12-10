@@ -2,20 +2,20 @@
 
 namespace WPFStudy_LibraryManager
 {
-    public class LoginUIValueModel : INotifyPropertyChanged
+    public class LoginUIViewModel : INotifyPropertyChanged
     {
-        private LoginValueModel _LoginVM;
-        public LoginValueModel LoginVM
+        private LoginValue _Login;
+        public LoginValue Login
         {
             get
             {
-                if (_LoginVM == null) { _LoginVM = new LoginValueModel(); }
-                return _LoginVM;
+                if (_Login == null) { _Login = new LoginValue(); }
+                return _Login;
             }
             set
             {
-                _LoginVM = value;
-                FirePropertyChangedEvent(nameof(LoginVM));
+                _Login = value;
+                FirePropertyChangedEvent(nameof(Login));
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -24,7 +24,7 @@ namespace WPFStudy_LibraryManager
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
-    public class LoginValueModel
+    public class LoginValue
     {
         private string _UsrName;
         public string UsrName

@@ -7,22 +7,22 @@ namespace WPFStudy_LibraryManager
     /// </summary>
     public partial class MainWindow : Window
     {
-        LoginUIValueModel LoginUIVM;
+        LoginUIViewModel LoginUIVM;
         public MainWindow()
         {
             InitializeComponent();
-            LoginUIVM = new LoginUIValueModel();
+            LoginUIVM = new LoginUIViewModel();
             DataContext = LoginUIVM;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (LoginUIVM.LoginVM.UsrName != "wpf" || LoginUIVM.LoginVM.Password != "123456")
+            if (LoginUIVM.Login.UsrName != "wpf" || LoginUIVM.Login.Password != "123456")
             {
                 MessageBox.Show("用户名或密码不正确");
-                LoginUIVM.LoginVM.UsrName = string.Empty;
-                LoginUIVM.LoginVM.Password = string.Empty;
-                LoginUIVM.LoginVM = LoginUIVM.LoginVM;
+                LoginUIVM.Login.UsrName = string.Empty;
+                LoginUIVM.Login.Password = string.Empty;
+                LoginUIVM.Login = LoginUIVM.Login;
                 return;
             }
             var index = new Index();
