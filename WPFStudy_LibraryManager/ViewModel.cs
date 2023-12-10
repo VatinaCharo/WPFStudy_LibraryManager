@@ -23,6 +23,23 @@ namespace WPFStudy_LibraryManager
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        public string UsrName
+        {
+            get { return Login.UsrName; }
+            set { 
+                Login.UsrName = value;
+                FirePropertyChangedEvent(nameof(UsrName));
+            }
+        }
+        public string Password
+        {
+            get { return Login.Password; }
+            set
+            {
+                Login.Password = value;
+                FirePropertyChangedEvent(nameof(Password));
+            }
+        }
     }
     public class LoginValue
     {
