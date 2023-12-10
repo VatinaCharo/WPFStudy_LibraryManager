@@ -1,21 +1,28 @@
 ﻿using System.ComponentModel;
+using System.Windows;
+using System.Windows.Input;
 
 namespace WPFStudy_LibraryManager
 {
     public class LoginUIViewModel : INotifyPropertyChanged
     {
-        private LoginValue _Login;
-        public LoginValue Login
+        private readonly Window _OwnerWindow;
+        public LoginUIViewModel(Window window)
+        {
+            _OwnerWindow = window;
+        }
+        private LoginValue _LoginV;
+        public LoginValue LoginV
         {
             get
             {
-                if (_Login == null) { _Login = new LoginValue(); }
-                return _Login;
+                if (_LoginV == null) { _LoginV = new LoginValue(); }
+                return _LoginV;
             }
             set
             {
-                _Login = value;
-                FirePropertyChangedEvent(nameof(Login));
+                _LoginV = value;
+                FirePropertyChangedEvent(nameof(LoginV));
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -25,19 +32,41 @@ namespace WPFStudy_LibraryManager
         }
         public string UsrName
         {
-            get { return Login.UsrName; }
+            get { return LoginV.UsrName; }
             set { 
-                Login.UsrName = value;
+                LoginV.UsrName = value;
                 FirePropertyChangedEvent(nameof(UsrName));
             }
         }
         public string Password
         {
-            get { return Login.Password; }
+            get { return LoginV.Password; }
             set
             {
-                Login.Password = value;
+                LoginV.Password = value;
                 FirePropertyChangedEvent(nameof(Password));
+            }
+        }
+        public void Login()
+        {
+            if(UsrName != "wpf" || Password!="123456") {
+                MessageBox.Show("用户名或密码不正确");
+                UsrName = string.Empty;
+                Password = string.Empty;
+                return; 
+            }
+            new Index().Show();
+            _OwnerWindow.Close();
+        }
+        private bool CanLogin()
+        {
+            return true;
+        }
+        public ICommand LoginAction
+        {
+            get
+            {
+                return new RelayCommand(Login, CanLogin);
             }
         }
     }
