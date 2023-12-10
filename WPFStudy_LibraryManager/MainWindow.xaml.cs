@@ -6,13 +6,36 @@ namespace WPFStudy_LibraryManager
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public partial class MainWindow : Window
     {
+        LoginModel loginModel;
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = this;
+            loginModel = new LoginModel();
+            DataContext = loginModel;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (loginModel.UsrName != "wpf" || loginModel.Password != "123456")
+            {
+                MessageBox.Show("用户名或密码不正确");
+                loginModel.UsrName = string.Empty;
+                loginModel.Password = string.Empty;
+                return;
+            }
+            var index = new Index();
+            index.Show();
+            Close();
+        }
+    }
+
+    /// <summary>
+    /// 登录功能的交互逻辑
+    /// </summary>
+    public class LoginModel : INotifyPropertyChanged
+    {
         private string _UsrName;
         public string UsrName
         {
@@ -38,20 +61,6 @@ namespace WPFStudy_LibraryManager
         private void FirePropertyChangedEvent(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (UsrName != "wpf" || Password != "123456")
-            {
-                MessageBox.Show("用户名或密码不正确");
-                UsrName = string.Empty;
-                Password = string.Empty;
-                return;
-            }
-            var index = new Index();
-            index.Show();
-            Close();
         }
     }
 }
