@@ -43,7 +43,7 @@ namespace WPFStudy_LibraryManager
             set
             {
                 _UsrName = value;
-                FirePropertyChangedEvent("UsrName");
+                FirePropertyChangedEvent(nameof(UsrName));
             }
         }
         private string _Password;
@@ -53,7 +53,7 @@ namespace WPFStudy_LibraryManager
             set
             {
                 _Password = value;
-                FirePropertyChangedEvent("Password");
+                FirePropertyChangedEvent(nameof(Password));
             }
         }
 
